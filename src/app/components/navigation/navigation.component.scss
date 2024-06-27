@@ -1,0 +1,28 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &-search {
+    display: flex;
+    gap: 15px;
+
+    &_btn {
+    }
+  }
+
+  &-filters {
+    display: flex;
+    justify-content: left;
+    gap: 15px;
+    margin-bottom: 15px;
+
+    &_select {
+      max-width: 200px;
+    }
+
+    &_input {
+      max-width: 300px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div class="navigation">
+    <div class="navigation-search">
+        <kbq-form-field>
+            <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
+
+            <input kbqInput [(ngModel)]="value" placeholder="Поиск по всем колонкам...">
+
+            <kbq-cleaner></kbq-cleaner>
+        </kbq-form-field>
+        <button
+                class="navigation-search_btn"
+                kbq-button
+                [color]="colors.Contrast"
+        >
+            Искать</button>
+        <button
+                class="navigation-search_btn"
+                kbq-button
+                [color]="colors.Contrast"
+        >Открыть панель фильтров</button>
+    </div>
+    <div class="navigation-filters">
+        <kbq-form-field class="navigation-filters_select">
+            <kbq-select [(value)]="selected">
+                <kbq-option *ngFor="let option of options" [value]="option">
+                    <span [innerHTML]="option"></span>
+                </kbq-option>
+            </kbq-select>
+        </kbq-form-field>
+        <kbq-form-field class="navigation-filters_input">
+            <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
+
+            <input kbqInput [(ngModel)]="value" placeholder="Поиск по выбранной колонке...">
+
+            <kbq-cleaner></kbq-cleaner>
+        </kbq-form-field>
+    </div>
+</div>

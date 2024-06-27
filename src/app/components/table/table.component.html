@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+    <div class="table-viewport" cdkVirtualScrollingElement>
+        <div class="table-header" [ngStyle]="{'grid-template-columns': 'repeat(' + keysLength + ' , 1fr)'}">
+            <div class="table-header-column" *ngFor="let key of keys">
+                {{key}}
+            </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="50">
+            <div *cdkVirtualFor="let item of data" class="table-item" [ngStyle]="{'grid-template-columns': 'repeat(' + keysLength + ' , 1fr)'}">
+                <div class="table-item_cell" *ngFor="let key of keys">{{item[key]}}</div>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+    <button
+            class="export_btn"
+            kbq-button
+            [color]="colors.Contrast"
+    >
+        <i kbq-icon="mc-download_16"></i>
+        Экспортировать
+    </button>
+</div>
