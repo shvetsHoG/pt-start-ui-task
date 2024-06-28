@@ -7,6 +7,11 @@
     display: flex;
     gap: 15px;
 
+    &_btn-wrapper {
+      display: flex;
+      gap: 15px;
+    }
+
     &-buttons-container {
       display: grid;
       grid-auto-columns: auto;
@@ -22,13 +27,21 @@
 
     &_select {
       max-width: 200px;
-
-      &_wrapper {
-      }
     }
 
     &_input {
       max-width: 300px;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .navigation-search {
+    flex-direction: column;
+  }
+
+  .navigation-filters {
+    flex-direction: column;
+    gap: 15px;
   }
 }

@@ -21,7 +21,6 @@ export class AppComponent {
       this.options = Object.keys(this.data[0])
 
       effect(() => {
-        console.log(this.args())
         this.fetchData()
       });
   }

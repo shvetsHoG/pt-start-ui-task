@@ -5,23 +5,25 @@
             <input kbqInput [(ngModel)]="inputAllValue" placeholder="Поиск по всем колонкам...">
             <kbq-cleaner (click)="inputAllValue = ''"></kbq-cleaner>
         </kbq-form-field>
-        <button
-                class="navigation-search_btn"
-                kbq-button
-                [color]="colors.Contrast"
-                (click)="inputSearchByValues(inputAllValue, 'data')"
-        >
-            Искать</button>
-        <button
-                class="navigation-search_btn"
-                kbq-button
-                kbqPopover
-                #popover="kbqPopover"
-                [kbqPopoverContent]="filterPanelVariants"
-                [kbqPopoverFooter]="filterPanelFooter"
-                kbqPopoverHeader="Выберите отображаемые колонки"
-                [color]="colors.Contrast"
-        >Выбрать колонки</button>
+        <div class="navigation-search_btn-wrapper">
+            <button
+                    class="navigation-search_btn"
+                    kbq-button
+                    [color]="colors.Contrast"
+                    (click)="inputSearchByValues(inputAllValue, 'data')"
+            >
+                Искать</button>
+            <button
+                    class="navigation-search_btn"
+                    kbq-button
+                    kbqPopover
+                    #popover="kbqPopover"
+                    [kbqPopoverContent]="filterPanelVariants"
+                    [kbqPopoverFooter]="filterPanelFooter"
+                    kbqPopoverHeader="Выберите отображаемые колонки"
+                    [color]="colors.Contrast"
+            >Выбрать колонки</button>
+        </div>
         <ng-template #filterPanelVariants>
             <div class="navigation-search-buttons-container">
                 <kbq-checkbox class="example-margin" *ngFor="let option of constOptionsArray" [(ngModel)]="constOptions[option]" >
@@ -51,12 +53,15 @@
 
             <kbq-cleaner (click)="inputColumnValue=''"></kbq-cleaner>
         </kbq-form-field>
-        <button
-                class="navigation-search_btn"
-                kbq-button
-                [color]="colors.Contrast"
-                (click)="inputSearchByValues(inputColumnValue, selected)"
-        >
-            Искать</button>
+        <div>
+            <button
+                    class="navigation-search_btn"
+                    kbq-button
+                    [color]="colors.Contrast"
+                    (click)="inputSearchByValues(inputColumnValue, selected)"
+            >
+                Искать</button>
+        </div>
+
     </div>
 </div>

@@ -3,8 +3,8 @@
         <div class="table-header" [ngStyle]="{'grid-template-columns': 'repeat(' + keys.length + ' , 1fr)'}">
             <div class="table-header-column" *ngFor="let key of keys" (click)="updateColumnSort(key)">
                 {{key}}
-                <i kbq-icon="mc-angle-down-L_16" *ngIf="columnSortOrder === 'asc' && args().sort.field === key"></i>
-                <i kbq-icon="mc-angle-up-L_16" *ngIf="columnSortOrder === 'desc' && args().sort.field === key"></i>
+                <i kbq-icon="mc-angle-down-L_16" [color]="colors.Contrast" *ngIf="columnSortOrder === 'asc' && args().sort.field === key"></i>
+                <i kbq-icon="mc-angle-up-L_16" [color]="colors.Contrast" *ngIf="columnSortOrder === 'desc' && args().sort.field === key"></i>
             </div>
         </div>
         <cdk-virtual-scroll-viewport itemSize="50">
