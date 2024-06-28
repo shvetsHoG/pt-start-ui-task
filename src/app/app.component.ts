@@ -17,6 +17,9 @@ import {TableComponent} from "./components/table/table.component";
 export class AppComponent {
   constructor(private apiService: ApiService) {
       this.fetchData()
+
+      this.options = Object.keys(this.data[0])
+
       effect(() => {
         console.log(this.args())
         this.fetchData()
@@ -24,6 +27,8 @@ export class AppComponent {
   }
 
   data!: Agent[]
+  options: string[]
+
   args: WritableSignal<IArgs> = signal({
     page: 0,
     pageSize:  10000,
@@ -40,5 +45,9 @@ export class AppComponent {
         this.args().filters,
         this.args().sort
     )
+  }
+
+  changeOptions(newOptions: string[]) {
+    this.options = newOptions
   }
 }

@@ -49,7 +49,7 @@ export class ApiService {
           }
 
           if (filterField === 'tags') {
-            return (filterValue as string[]).some((tag) => item.tags.includes(tag));
+            return ([filterValue] as string[]).some((tag) => item.tags.includes(tag));
           }
 
           const value = item[filterField as AgentField];

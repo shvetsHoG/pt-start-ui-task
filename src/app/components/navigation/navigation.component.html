@@ -17,16 +17,22 @@
                 kbq-button
                 kbqPopover
                 #popover="kbqPopover"
-                [kbqPopoverContent]="filterPanel"
+                [kbqPopoverContent]="filterPanelVariants"
+                [kbqPopoverFooter]="filterPanelFooter"
                 kbqPopoverHeader="Выберите отображаемые колонки"
                 [color]="colors.Contrast"
-        >Открыть панель фильтров</button>
-        <ng-template #filterPanel>
+        >Выбрать колонки</button>
+        <ng-template #filterPanelVariants>
             <div class="navigation-search-buttons-container">
-                <kbq-checkbox class="example-margin" [checked]="true" *ngFor="let option of options">
+                <kbq-checkbox class="example-margin" *ngFor="let option of constOptionsArray" [(ngModel)]="constOptions[option]" >
                     {{option}}
                 </kbq-checkbox>
             </div>
+        </ng-template>
+        <ng-template #filterPanelFooter>
+            <button kbq-button [kbqStyle]="styles.Outline" [color]="colors.ThemeFade" (click)="chooseColumns()">
+                Сохранить
+            </button>
         </ng-template>
     </div>
 

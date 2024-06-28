@@ -10,22 +10,27 @@ import {ngxCsv} from "ngx-csv";
 @Component({
   selector: 'pt-start-ui-task-table',
   standalone: true,
-  imports: [CommonModule, CdkVirtualScrollViewport, ScrollingModule, KbqIconModule, KbqButtonModule],
+  imports: [
+    CommonModule,
+    CdkVirtualScrollViewport,
+    ScrollingModule,
+    KbqIconModule,
+    KbqButtonModule
+  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
 export class TableComponent {
   @Input() data!: Agent[]
   @Input() args!: WritableSignal<IArgs>
-  colors = KbqComponentColors;
-  keys!: string[]
-  values = this.data
-  keysLength!: number
+  @Input() keys!: string[]
 
+  colors = KbqComponentColors;
+
+  keysLength!: number
   columnSortOrder: 'asc' | 'desc' = 'asc'
 
   ngOnInit() {
-    this.keys = Object.keys(this.data[0])
     this.keysLength = this.keys.length
   }
 

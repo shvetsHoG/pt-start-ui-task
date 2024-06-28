@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation, WritableSignal} from '@angular/core';
+import {Component, EventEmitter, Input, NgIterable, Output, ViewEncapsulation, WritableSignal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {KbqFormFieldModule} from "@koobiq/components/form-field";
 import {KbqIconModule} from "@koobiq/components/icon";
@@ -32,23 +32,45 @@ import {IArgs} from "../../types";
 })
 export class NavigationComponent {
   @Input() args!: WritableSignal<IArgs>
+  @Input() options!: string[]
+  @Output() changedColumns = new EventEmitter<string[]>()
+
+  ngOnInit() {
+    for (let option of this.options) {
+      this.constOptionsArray.push(option)
+      this.constOptions[option] = true
+    }
+  }
+
+  ngOnChanges() {
+    this.selected = this.options[0]
+  }
+
   colors = KbqComponentColors;
-  inputAllValue = '';
-  inputColumnValue = ''
   styles = KbqButtonStyles;
 
-  selected = 'id';
+  inputAllValue = '';
+  inputColumnValue = ''
+  selected = '';
 
-  options: string[] = ['id', 'name', 'os', 'authorization_status', 'connected', 'created_datetime', 'last_connected_datetime', 'group'];
+  constOptions: Record<string, boolean> = {}
+  constOptionsArray: string[] = []
+
   inputSearchByValues(value: string, filterField: string) {
-    if (this.inputAllValue === '' && filterField === 'data') {
-      this.args.set({...this.args(), filters: {...this.args().filters}})
+    if (filterField === 'data') {
+      this.args.set({...this.args(), filters: {...this.args().filters, 'data': this.inputAllValue}})
+    }
+    this.args.set({...this.args(), filters: {[filterField]: value, 'data': this.inputAllValue}})
+  }
+
+  chooseColumns() {
+    const newOption = []
+    for (let option in this.constOptions) {
+      if (this.constOptions[option]) {
+        newOption.push(option)
+      }
     }
 
-    if (filterField !== 'data') {
-      this.args.set({...this.args(), filters: {[filterField]: value, 'data': this.inputAllValue}})
-    }
-
-    this.args.set({...this.args(), filters: {...this.args().filters, [filterField]: value}})
+    this.changedColumns.emit(newOption)
   }
 }
