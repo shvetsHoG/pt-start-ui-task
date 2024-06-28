@@ -11,14 +11,27 @@
                 class="navigation-search_btn"
                 kbq-button
                 [color]="colors.Contrast"
+                (click)="go()"
         >
             Искать</button>
         <button
                 class="navigation-search_btn"
                 kbq-button
+                kbqPopover
+                #popover="kbqPopover"
+                [kbqPopoverContent]="filterPanel"
+                kbqPopoverHeader="Выберите отображаемые колонки"
                 [color]="colors.Contrast"
         >Открыть панель фильтров</button>
+        <ng-template #filterPanel>
+            <div class="navigation-search-buttons-container">
+                <kbq-checkbox class="example-margin" [checked]="true" *ngFor="let option of options">
+                    {{option}}
+                </kbq-checkbox>
+            </div>
+        </ng-template>
     </div>
+
     <div class="navigation-filters">
         <kbq-form-field class="navigation-filters_select">
             <kbq-select [(value)]="selected">

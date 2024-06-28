@@ -10,6 +10,14 @@ export interface Agent {
   authorization_status: AuthStatus;
 }
 
+export interface IArgs {
+  page: number
+  pageSize: number,
+  offset: number,
+  filters: Record<string, string[] | string | boolean | number>
+  sort: { field: string, order: 'asc' | 'desc'}
+}
+
 export enum OS {
   Windows = 'windows',
   Linux = 'linux',

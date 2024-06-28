@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Agent, AuthStatus, OS } from './types';
+import {Injectable} from '@angular/core';
+import {Agent, AuthStatus, OS} from './types';
 
 type AgentField = keyof Agent;
 
@@ -63,6 +63,11 @@ export class ApiService {
       });
 
     const sorted = filtered.sort((a, b) => {
+      if (typeof a[sort.field as keyof Agent] === 'number') {
+          // @ts-ignore
+          return a[sort.field as keyof Agent] - b[sort.field as keyof Agent]
+        }
+
       return a[sort.field as keyof Agent].toString().localeCompare(b[sort.field as keyof Agent].toString(), 'en')
     });
 

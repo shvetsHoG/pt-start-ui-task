@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, effect, signal, WritableSignal} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { KbqCommonModule } from '@koobiq/components/core';
 import { ApiService } from './api.service';
 import {NgForOf} from "@angular/common";
-import {Agent} from "./types";
+import {Agent, IArgs} from "./types";
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {TableComponent} from "./components/table/table.component";
 
@@ -17,17 +17,29 @@ import {TableComponent} from "./components/table/table.component";
 export class AppComponent {
   constructor(private apiService: ApiService) {
       this.fetchData()
+      effect(() => {
+        this.fetchData()
+        console.log(this.args())
+      });
   }
 
   data!: Agent[]
-  page = 0
-  pageSize = 10000
-  offset = 0
-  filters: Record<string, string[] | string | boolean | number> = {}
-  sort: { field: string, order: 'asc' | 'desc'} = {field: 'name', order: 'asc'}
+  args: WritableSignal<IArgs> = signal({
+    page: 0,
+    pageSize:  10000,
+    offset: 0,
+    filters: {},
+    sort: {field: 'id', order: 'asc'}
+  })
 
   fetchData() {
-    this.data = this.apiService.fetch(this.page, this.pageSize, this.offset, this.filters, this.sort)
+    this.data = this.apiService.fetch(
+        this.args().page,
+        this.args().pageSize,
+        this.args().offset,
+        this.args().filters,
+        this.args().sort
+    )
     console.log(this.data)
   }
 }

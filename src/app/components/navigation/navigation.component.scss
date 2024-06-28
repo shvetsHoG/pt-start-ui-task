@@ -7,7 +7,10 @@
     display: flex;
     gap: 15px;
 
-    &_btn {
+    &-buttons-container {
+      display: grid;
+      grid-auto-columns: auto;
+      gap: 10px;
     }
   }
 
@@ -19,6 +22,9 @@
 
     &_select {
       max-width: 200px;
+
+      &_wrapper {
+      }
     }
 
     &_input {
