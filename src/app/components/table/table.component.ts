@@ -26,13 +26,7 @@ export class TableComponent {
   @Input() keys!: string[]
 
   colors = KbqComponentColors;
-
-  keysLength!: number
   columnSortOrder: 'asc' | 'desc' = 'asc'
-
-  ngOnInit() {
-    this.keysLength = this.keys.length
-  }
 
   exportCSV() {
     const options = {
