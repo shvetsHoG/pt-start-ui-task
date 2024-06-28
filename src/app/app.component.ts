@@ -18,8 +18,8 @@ export class AppComponent {
   constructor(private apiService: ApiService) {
       this.fetchData()
       effect(() => {
-        this.fetchData()
         console.log(this.args())
+        this.fetchData()
       });
   }
 
@@ -40,6 +40,5 @@ export class AppComponent {
         this.args().filters,
         this.args().sort
     )
-    console.log(this.data)
   }
 }

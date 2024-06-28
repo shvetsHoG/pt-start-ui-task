@@ -33,14 +33,22 @@ import {IArgs} from "../../types";
 export class NavigationComponent {
   @Input() args!: WritableSignal<IArgs>
   colors = KbqComponentColors;
-  value = '';
+  inputAllValue = '';
+  inputColumnValue = ''
   styles = KbqButtonStyles;
 
   selected = 'id';
 
   options: string[] = ['id', 'name', 'os', 'authorization_status', 'connected', 'created_datetime', 'last_connected_datetime', 'group'];
-  go() {
-    this.args.set({...this.args(), sort: {field: 'id', order: 'desc'}
-    })
+  inputSearchByValues(value: string, filterField: string) {
+    if (this.inputAllValue === '' && filterField === 'data') {
+      this.args.set({...this.args(), filters: {...this.args().filters}})
+    }
+
+    if (filterField !== 'data') {
+      this.args.set({...this.args(), filters: {[filterField]: value, 'data': this.inputAllValue}})
+    }
+
+    this.args.set({...this.args(), filters: {...this.args().filters, [filterField]: value}})
   }
 }

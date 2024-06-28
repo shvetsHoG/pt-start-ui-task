@@ -58,6 +58,10 @@ export class ApiService {
             return new RegExp(filterValue as string, 'm').test((value))
           }
 
+          if (typeof value === "number") {
+            return new RegExp(filterValue as string, 'm').test((value.toString()))
+          }
+
           return value === filters[filterField];
         });
       });

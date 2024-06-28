@@ -2,16 +2,14 @@
     <div class="navigation-search">
         <kbq-form-field>
             <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
-
-            <input kbqInput [(ngModel)]="value" placeholder="Поиск по всем колонкам...">
-
-            <kbq-cleaner></kbq-cleaner>
+            <input kbqInput [(ngModel)]="inputAllValue" placeholder="Поиск по всем колонкам...">
+            <kbq-cleaner (click)="inputAllValue = ''"></kbq-cleaner>
         </kbq-form-field>
         <button
                 class="navigation-search_btn"
                 kbq-button
                 [color]="colors.Contrast"
-                (click)="go()"
+                (click)="inputSearchByValues(inputAllValue, 'data')"
         >
             Искать</button>
         <button
@@ -43,9 +41,16 @@
         <kbq-form-field class="navigation-filters_input">
             <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
 
-            <input kbqInput [(ngModel)]="value" placeholder="Поиск по выбранной колонке...">
+            <input kbqInput [(ngModel)]="inputColumnValue" placeholder="Поиск по выбранной колонке...">
 
-            <kbq-cleaner></kbq-cleaner>
+            <kbq-cleaner (click)="inputColumnValue=''"></kbq-cleaner>
         </kbq-form-field>
+        <button
+                class="navigation-search_btn"
+                kbq-button
+                [color]="colors.Contrast"
+                (click)="inputSearchByValues(inputColumnValue, selected)"
+        >
+            Искать</button>
     </div>
 </div>
