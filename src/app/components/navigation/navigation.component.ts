@@ -56,6 +56,7 @@ export class NavigationComponent {
   constOptions: Record<string, boolean> = {}
   constOptionsArray: string[] = []
 
+  //TODO: add input debounce
   inputSearchByValues(value: string, filterField: string) {
     if (filterField === 'data') {
       this.args.set({...this.args(), filters: {...this.args().filters, 'data': this.inputAllValue}})
