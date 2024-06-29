@@ -10,11 +10,11 @@
         <div class='content-wrapper_input'>
             <span>Введите имя</span>
             <kbq-form-field>
-                <input kbqInput [(ngModel)]='selectedValues.name'
+                <input kbqInput [required]='isShowAlert' [(ngModel)]='selectedValues.name'
                        placeholder='Введите имя...'>
                 <kbq-cleaner (click)="selectedValues.name = ''"></kbq-cleaner>
             </kbq-form-field>
-            <span *ngIf="selectedValues.name === '' && isShowAlertSpan" [ngStyle]="{color: 'red'}">Это обязательное поле!</span>
+            <span *ngIf="selectedValues.name === '' && isShowAlert" [ngStyle]="{color: 'red', fontSize: '12px'}">Это обязательное поле!</span>
         </div>
         <div class='content-wrapper_select-wrapper'>
             <div class='content-wrapper_select'>

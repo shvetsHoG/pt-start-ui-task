@@ -65,7 +65,7 @@ export class AgentModalComponent {
         group: this.groups[0]
     };
 
-    isShowAlertSpan: boolean = false;
+    isShowAlert: boolean = false;
 
     createModal(
         Title: TemplateRef<{}>,
@@ -86,7 +86,7 @@ export class AgentModalComponent {
 
         if (this.selectedValues.name === '') {
             this.clearSelectedValues();
-            this.isShowAlertSpan = true;
+            this.isShowAlert = true;
             return;
         }
 
@@ -116,7 +116,7 @@ export class AgentModalComponent {
         this.selectedValues.os = OS.Windows;
         this.selectedValues.group = this.groups[0];
         this.selectedValues.tags = [this.tags[0]];
-        this.isShowAlertSpan = false;
+        this.isShowAlert = false;
     }
 
     showToast(type: string) {
