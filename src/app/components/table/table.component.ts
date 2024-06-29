@@ -28,8 +28,12 @@ export class TableComponent {
     @Input() args!: WritableSignal<IArgs>;
     @Input() keys!: string[];
 
+    ngOnInit() {
+        this.columnSortOrder = this.args().sort.order;
+    }
+
     colors = KbqComponentColors;
-    columnSortOrder: 'asc' | 'desc' = 'asc';
+    columnSortOrder!: 'asc' | 'desc';
 
     exportCSV() {
         const options = {

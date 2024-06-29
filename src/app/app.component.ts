@@ -36,7 +36,7 @@ export class AppComponent {
 
     args: WritableSignal<IArgs> = signal({
         page: 0,
-        pageSize: 10000,
+        pageSize: 100000,
         offset: 0,
         filters: {},
         sort: { field: 'id', order: 'asc' }

@@ -18,6 +18,7 @@ import { KbqPopoverModule } from '@koobiq/components/popover';
 import { KbqCheckboxModule } from '@koobiq/components/checkbox';
 import { IArgs } from '../../types';
 import { BehaviorSubject, debounce, debounceTime } from 'rxjs';
+import { AgentModalComponent } from '../agent-modal/agent-modal.component';
 
 @Component({
     selector: 'pt-start-ui-task-navigation',
@@ -32,7 +33,8 @@ import { BehaviorSubject, debounce, debounceTime } from 'rxjs';
         KbqOptionModule,
         KbqSelectModule,
         KbqPopoverModule,
-        KbqCheckboxModule
+        KbqCheckboxModule,
+        AgentModalComponent
     ],
     templateUrl: './navigation.component.html',
     styleUrl: './navigation.component.scss',
@@ -70,7 +72,6 @@ export class NavigationComponent {
     constOptions: Record<string, boolean> = {};
     constOptionsArray: string[] = [];
 
-    //TODO: add input debounce
     inputSearchByValues(value: string, filterField: string) {
         if (filterField === 'data') {
             this.args.set({

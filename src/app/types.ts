@@ -10,6 +10,15 @@ export interface Agent {
     authorization_status: AuthStatus;
 }
 
+export type IAddAgent = Omit<
+    Agent,
+    | 'id'
+    | 'created_datetime'
+    | 'last_connected_datetime'
+    | 'connected'
+    | 'authorization_status'
+>;
+
 export interface IArgs {
     page: number;
     pageSize: number;

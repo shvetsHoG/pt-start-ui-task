@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Agent, AuthStatus, OS } from './types';
+import { Agent, AuthStatus, IAddAgent, OS } from './types';
 
 type AgentField = keyof Agent;
 
@@ -70,13 +70,20 @@ export class ApiService {
                 const value = item[filterField as AgentField];
 
                 if (typeof value === 'string') {
-                    return new RegExp(filterValue as string, 'm').test(value);
+                    return new RegExp(
+                        (filterValue as string).toLowerCase(),
+                        'm'
+                    ).test(value.toLowerCase());
                 }
 
                 if (typeof value === 'number') {
                     return new RegExp(filterValue as string, 'm').test(
                         value.toString()
                     );
+                }
+
+                if (typeof value === 'boolean') {
+                    return value === !!filterValue;
                 }
 
                 return value === filters[filterField];
@@ -101,5 +108,21 @@ export class ApiService {
         return sorted
             .slice(offset)
             .slice(page * pageSize, (page + 1) * pageSize);
+    }
+
+    addAgent(agentPart: IAddAgent) {
+        const newAgent: Agent = {
+            id: this.data[this.data.length - 1].id + 1,
+            name: agentPart.name,
+            os: agentPart.os,
+            created_datetime: new Date().toISOString(),
+            last_connected_datetime: new Date().toISOString(),
+            tags: agentPart.tags,
+            group: agentPart.group,
+            connected: true,
+            authorization_status: AuthStatus.Authorized
+        };
+
+        this.data.push(newAgent);
     }
 }

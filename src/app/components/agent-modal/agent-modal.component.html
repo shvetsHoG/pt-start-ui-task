@@ -1,0 +1,58 @@
+<button kbq-button class='modal-example-button' (click)='createModal(Title, Content, Footer)'>Добавить
+    пользователя
+</button>
+
+<ng-template #Title>
+    <span>Добавить пользователя</span>
+</ng-template>
+<ng-template #Content>
+    <div class='content-wrapper'>
+        <div class='content-wrapper_input'>
+            <span>Введите имя</span>
+            <kbq-form-field>
+                <input kbqInput [(ngModel)]='selectedValues.name'
+                       placeholder='Введите имя...'>
+                <kbq-cleaner (click)="selectedValues.name = ''"></kbq-cleaner>
+            </kbq-form-field>
+            <span *ngIf="selectedValues.name === '' && isShowAlertSpan" [ngStyle]="{color: 'red'}">Это обязательное поле!</span>
+        </div>
+        <div class='content-wrapper_select-wrapper'>
+            <div class='content-wrapper_select'>
+                <span>Выберите группу</span>
+                <kbq-form-field class='navigation-filters_select'>
+                    <kbq-select [(value)]='selectedValues.group'>
+                        <kbq-option *ngFor='let group of groups' [value]='group'>
+                            <span [innerHTML]='group'></span>
+                        </kbq-option>
+                    </kbq-select>
+                </kbq-form-field>
+            </div>
+            <div class='content-wrapper_select'>
+                <span>Выберите операционную систему</span>
+                <kbq-form-field class='navigation-filters_select'>
+                    <kbq-select [(value)]='selectedValues.os'>
+                        <kbq-option *ngFor='let item of os' [value]='item'>
+                            <span [innerHTML]='item'></span>
+                        </kbq-option>
+                    </kbq-select>
+                </kbq-form-field>
+            </div>
+            <div class='content-wrapper_select'>
+                <span>Выберите тэг</span>
+                <kbq-form-field class='navigation-filters_select'>
+                    <kbq-select [(value)]='selectedValues.tags[0]'>
+                        <kbq-option *ngFor='let tag of tags' [value]='tag'>
+                            <span [innerHTML]='tag'></span>
+                        </kbq-option>
+                    </kbq-select>
+                </kbq-form-field>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #Footer>
+    <div class='footer-wrapper'>
+        <button kbq-button [color]='colors.Contrast' (click)='createNewAgent()'>Сохранить</button>
+        <button kbq-button (click)='cancelModal()'>Отмена</button>
+    </div>
+</ng-template>

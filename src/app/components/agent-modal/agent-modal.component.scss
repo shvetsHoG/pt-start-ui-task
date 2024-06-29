@@ -1,0 +1,40 @@
+.content-wrapper {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+
+  & span {
+    margin-left: 2px;
+  }
+
+  &_input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &_select {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 15px;
+
+    &-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+.footer-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+@media (max-width: 650px) {
+  .content-wrapper_select-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
