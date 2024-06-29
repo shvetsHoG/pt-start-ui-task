@@ -1,66 +1,68 @@
-<div class="navigation">
-    <div class="navigation-search">
+<div class='navigation'>
+    <div class='navigation-search'>
         <kbq-form-field>
-            <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
-            <input kbqInput [(ngModel)]="inputAllValue" placeholder="Поиск по всем колонкам...">
+            <i kbqPrefix kbq-icon='mc-search_16' [autoColor]='true'></i>
+            <input kbqInput [(ngModel)]="inputAllValue" (ngModelChange)="handleSearchDebounce(inputAllValue, 'data')" placeholder='Поиск по всем колонкам...'>
             <kbq-cleaner (click)="inputAllValue = ''"></kbq-cleaner>
         </kbq-form-field>
-        <div class="navigation-search_btn-wrapper">
+        <div class='navigation-search_btn-wrapper'>
             <button
-                    class="navigation-search_btn"
-                    kbq-button
-                    [color]="colors.Contrast"
-                    (click)="inputSearchByValues(inputAllValue, 'data')"
+                class='navigation-search_btn'
+                kbq-button
+                [color]='colors.Contrast'
+                (click)="inputSearchByValues(inputAllValue, 'data')"
             >
-                Искать</button>
+                Искать
+            </button>
             <button
-                    class="navigation-search_btn"
-                    kbq-button
-                    kbqPopover
-                    #popover="kbqPopover"
-                    [kbqPopoverContent]="filterPanelVariants"
-                    [kbqPopoverFooter]="filterPanelFooter"
-                    kbqPopoverHeader="Выберите отображаемые колонки"
-                    [color]="colors.Contrast"
-            >Выбрать колонки</button>
+                class='navigation-search_btn'
+                kbq-button
+                kbqPopover
+                #popover='kbqPopover'
+                [kbqPopoverContent]='filterPanelVariants'
+                [kbqPopoverFooter]='filterPanelFooter'
+                kbqPopoverHeader='Выберите отображаемые колонки'
+                [color]='colors.Contrast'
+            >Выбрать колонки
+            </button>
         </div>
         <ng-template #filterPanelVariants>
-            <div class="navigation-search-buttons-container">
-                <kbq-checkbox class="example-margin" *ngFor="let option of constOptionsArray" [(ngModel)]="constOptions[option]" >
+            <div class='navigation-search-buttons-container'>
+                <kbq-checkbox class='example-margin' *ngFor='let option of constOptionsArray'
+                              [(ngModel)]='constOptions[option]'>
                     {{option}}
                 </kbq-checkbox>
             </div>
         </ng-template>
         <ng-template #filterPanelFooter>
-            <button kbq-button [kbqStyle]="styles.Outline" [color]="colors.ThemeFade" (click)="chooseColumns()">
+            <button kbq-button [kbqStyle]='styles.Outline' [color]='colors.ThemeFade' (click)='chooseColumns()'>
                 Сохранить
             </button>
         </ng-template>
     </div>
 
-    <div class="navigation-filters">
-        <kbq-form-field class="navigation-filters_select">
-            <kbq-select [(value)]="selected">
-                <kbq-option *ngFor="let option of options" [value]="option">
-                    <span [innerHTML]="option"></span>
+    <div class='navigation-filters'>
+        <kbq-form-field class='navigation-filters_select'>
+            <kbq-select [(value)]='selectedOption'>
+                <kbq-option *ngFor='let option of options' [value]='option'>
+                    <span [innerHTML]='option'></span>
                 </kbq-option>
             </kbq-select>
         </kbq-form-field>
-        <kbq-form-field class="navigation-filters_input">
-            <i kbqPrefix kbq-icon="mc-search_16" [autoColor]="true"></i>
-
-            <input kbqInput [(ngModel)]="inputColumnValue" placeholder="Поиск по выбранной колонке...">
-
+        <kbq-form-field class='navigation-filters_input'>
+            <i kbqPrefix kbq-icon='mc-search_16' [autoColor]='true'></i>
+            <input kbqInput [(ngModel)]='inputColumnValue' (ngModelChange)="handleSearchDebounce(inputColumnValue, selectedOption)" placeholder='Поиск по выбранной колонке...'>
             <kbq-cleaner (click)="inputColumnValue=''"></kbq-cleaner>
         </kbq-form-field>
         <div>
             <button
-                    class="navigation-search_btn"
-                    kbq-button
-                    [color]="colors.Contrast"
-                    (click)="inputSearchByValues(inputColumnValue, selected)"
+                class='navigation-search_btn'
+                kbq-button
+                [color]='colors.Contrast'
+                (click)='inputSearchByValues(inputColumnValue, selectedOption)'
             >
-                Искать</button>
+                Искать
+            </button>
         </div>
 
     </div>

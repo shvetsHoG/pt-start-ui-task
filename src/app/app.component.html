@@ -1,7 +1,8 @@
-<div class="kbq-display-big">PT START / UI / Task</div>
+<div class='kbq-display-big'>PT START / UI / Task</div>
 
 <router-outlet></router-outlet>
-<div class="app-wrapper">
-    <pt-start-ui-task-navigation [args]="args" [options]="options" (changedColumns)="changeOptions($event)"></pt-start-ui-task-navigation>
-    <pt-start-ui-task-table [data]="data" [args]="args" [keys]="options"></pt-start-ui-task-table>
+<div class='app-wrapper'>
+    <pt-start-ui-task-navigation [args]='args' [options]='options'
+                                 (changedColumns)='changeOptions($event)'></pt-start-ui-task-navigation>
+    <pt-start-ui-task-table [data]='data' [args]='args' [keys]='options'></pt-start-ui-task-table>
 </div>
