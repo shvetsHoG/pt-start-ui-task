@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { KbqCommonModule } from '@koobiq/components/core';
 import { ApiService } from './api.service';
 import { NgForOf } from '@angular/common';
-import { Agent, IArgs } from './types';
+import { Agent, IOptions } from './types';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { TableComponent } from './components/table/table.component';
 
@@ -34,7 +34,7 @@ export class AppComponent {
     data!: Agent[];
     options: string[];
 
-    args: WritableSignal<IArgs> = signal({
+    args: WritableSignal<IOptions> = signal({
         page: 0,
         pageSize: 100000,
         offset: 0,
@@ -43,13 +43,17 @@ export class AppComponent {
     });
 
     fetchData() {
-        this.data = this.apiService.fetch(
-            this.args().page,
-            this.args().pageSize,
-            this.args().offset,
-            this.args().filters,
-            this.args().sort
-        );
+        try {
+            this.data = this.apiService.fetch(
+                this.args().page,
+                this.args().pageSize,
+                this.args().offset,
+                this.args().filters,
+                this.args().sort
+            );
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     deleteAgentAndRefetchData(id: number) {

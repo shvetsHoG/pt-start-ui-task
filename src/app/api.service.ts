@@ -40,7 +40,6 @@ export class ApiService {
         }
     }
 
-    //TODO: add logic for adding new data
     fetch(
         page = 0,
         pageSize = 50,

@@ -19,7 +19,7 @@ export type IAddAgent = Omit<
     | 'authorization_status'
 >;
 
-export interface IArgs {
+export interface IOptions {
     page: number;
     pageSize: number;
     offset: number;

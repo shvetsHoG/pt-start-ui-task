@@ -6,7 +6,7 @@ import {
     WritableSignal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Agent, IArgs } from '../../types';
+import { Agent, IOptions } from '../../types';
 import {
     CdkVirtualScrollViewport,
     ScrollingModule
@@ -15,6 +15,7 @@ import { KbqIconModule } from '@koobiq/components/icon';
 import { KbqComponentColors } from '@koobiq/components/core';
 import { KbqButtonModule } from '@koobiq/components/button';
 import { ngxCsv } from 'ngx-csv';
+import { KbqModalService } from '@koobiq/components/modal';
 
 @Component({
     selector: 'pt-start-ui-task-table',
@@ -31,9 +32,11 @@ import { ngxCsv } from 'ngx-csv';
 })
 export class TableComponent {
     @Input() data!: Agent[];
-    @Input() args!: WritableSignal<IArgs>;
+    @Input() args!: WritableSignal<IOptions>;
     @Input() keys!: string[];
     @Output() agentId = new EventEmitter<number>();
+
+    constructor(private modalService: KbqModalService) {}
 
     ngOnInit() {
         this.columnSortOrder = this.args().sort.order;
@@ -75,5 +78,17 @@ export class TableComponent {
 
     deleteAgent(id: number) {
         this.agentId.emit(id);
+    }
+
+    showDeleteModal(id: number) {
+        this.modalService.delete({
+            kbqContent: 'Пользователь будет удален, продолжить?',
+            kbqOkText: 'Удалить',
+            kbqCancelText: 'Отмена',
+            kbqWidth: '480px',
+            kbqMaskClosable: true,
+            kbqOnOk: () => this.deleteAgent(id),
+            kbqOnCancel: () => this.modalService.closeAll()
+        });
     }
 }

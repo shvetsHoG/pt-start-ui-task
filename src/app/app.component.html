@@ -4,5 +4,6 @@
 <div class='app-wrapper'>
     <pt-start-ui-task-navigation [args]='args' [options]='options'
                                  (changedColumns)='changeOptions($event)'></pt-start-ui-task-navigation>
-    <pt-start-ui-task-table [data]='data' [args]='args' [keys]='options' (agentId)='deleteAgentAndRefetchData($event)'></pt-start-ui-task-table>
+    <pt-start-ui-task-table [data]='data' [args]='args' [keys]='options'
+                            (agentId)='deleteAgentAndRefetchData($event)'></pt-start-ui-task-table>
 </div>

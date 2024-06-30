@@ -16,7 +16,7 @@ import { KbqInputModule } from '@koobiq/components/input';
 import { KbqSelectModule } from '@koobiq/components/select';
 import { KbqPopoverModule } from '@koobiq/components/popover';
 import { KbqCheckboxModule } from '@koobiq/components/checkbox';
-import { IArgs } from '../../types';
+import { IOptions } from '../../types';
 import { BehaviorSubject, debounce, debounceTime } from 'rxjs';
 import { AgentModalComponent } from '../agent-modal/agent-modal.component';
 
@@ -41,7 +41,7 @@ import { AgentModalComponent } from '../agent-modal/agent-modal.component';
     encapsulation: ViewEncapsulation.None
 })
 export class NavigationComponent {
-    @Input() args!: WritableSignal<IArgs>;
+    @Input() args!: WritableSignal<IOptions>;
     @Input() options!: string[];
     @Output() changedColumns = new EventEmitter<string[]>();
 

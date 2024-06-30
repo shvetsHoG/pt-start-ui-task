@@ -10,7 +10,7 @@ import { ApiService } from '../../api.service';
 import { KbqFormFieldModule } from '@koobiq/components/form-field';
 import { KbqComponentColors, KbqOptionModule } from '@koobiq/components/core';
 import { KbqSelectModule } from '@koobiq/components/select';
-import { IAddAgent, IArgs, OS } from '../../types';
+import { IAddAgent, IOptions, OS } from '../../types';
 import { FormsModule } from '@angular/forms';
 import { KbqIconModule } from '@koobiq/components/icon';
 import { KbqInputModule } from '@koobiq/components/input';
@@ -39,7 +39,7 @@ import {
     styleUrl: './agent-modal.component.scss'
 })
 export class AgentModalComponent {
-    @Input() args!: WritableSignal<IArgs>;
+    @Input() args!: WritableSignal<IOptions>;
     constructor(
         private modalService: KbqModalService,
         private apiService: ApiService,
