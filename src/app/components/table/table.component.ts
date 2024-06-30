@@ -1,4 +1,10 @@
-import { Component, Input, WritableSignal } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+    WritableSignal
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Agent, IArgs } from '../../types';
 import {
@@ -27,6 +33,7 @@ export class TableComponent {
     @Input() data!: Agent[];
     @Input() args!: WritableSignal<IArgs>;
     @Input() keys!: string[];
+    @Output() agentId = new EventEmitter<number>();
 
     ngOnInit() {
         this.columnSortOrder = this.args().sort.order;
@@ -64,5 +71,9 @@ export class TableComponent {
             ...this.args(),
             sort: { field: field, order: this.columnSortOrder }
         });
+    }
+
+    deleteAgent(id: number) {
+        this.agentId.emit(id);
     }
 }

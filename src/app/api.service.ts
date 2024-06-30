@@ -83,7 +83,10 @@ export class ApiService {
                 }
 
                 if (typeof value === 'boolean') {
-                    return value === !!filterValue;
+                    return new RegExp(
+                        (filterValue as string).toLowerCase(),
+                        'm'
+                    ).test(value.toString().toLowerCase());
                 }
 
                 return value === filters[filterField];
@@ -124,5 +127,9 @@ export class ApiService {
         };
 
         this.data.push(newAgent);
+    }
+
+    deleteAgent(id: number) {
+        this.data = this.data.filter(agent => agent.id !== id);
     }
 }

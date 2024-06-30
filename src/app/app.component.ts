@@ -52,6 +52,11 @@ export class AppComponent {
         );
     }
 
+    deleteAgentAndRefetchData(id: number) {
+        this.apiService.deleteAgent(id);
+        this.fetchData();
+    }
+
     changeOptions(newOptions: string[]) {
         this.options = newOptions;
     }

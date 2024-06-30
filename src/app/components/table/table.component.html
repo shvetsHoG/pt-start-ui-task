@@ -11,7 +11,11 @@
         </div>
         <cdk-virtual-scroll-viewport itemSize='50'>
             <div *cdkVirtualFor='let item of data' class='table-item'
-                 [ngStyle]="{'grid-template-columns': 'repeat(' + keys.length + ' , 1fr)'}">
+                 [ngStyle]="{'grid-template-columns': 'repeat(' + keys.length + ' , 1fr)'}"
+            >
+                <div class='table-item_delete-btn' (click)='deleteAgent(item.id)'>
+                    <i kbq-icon="mc-close-L_32" [color]='colors.Default'></i>
+                </div>
                 <div class='table-item_cell' *ngFor='let key of keys'>{{item[key]}}</div>
             </div>
         </cdk-virtual-scroll-viewport>
